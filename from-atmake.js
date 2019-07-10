@@ -5,6 +5,8 @@ const shell = require('shelljs');
 const fs = require('fs');
 
 /**
+ * !!This program has been replaced by atmak.js!!
+ *
  * Read in a Atmel Studio Makefile, translate it into
  * a Linux compatiable Makefile. It also create
  * required directory structure required by the
