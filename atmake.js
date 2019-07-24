@@ -2,7 +2,6 @@
 "use strict";
 const fs = require('fs');
 const path = require('path');
-const readline = require('readline');
 const shell = require('shelljs');
 const parser = require('fast-xml-parser');
 
@@ -31,7 +30,6 @@ var argv = require('yargs')
         demandOption: true,
     })
     .argv;
-
 
 function readProjXml(cb)
 {
@@ -92,8 +90,12 @@ function extractProjConfig(proj, cb)
             });
         defs = defs.trim();
 
-        var optimize = root[name + '.compiler.optimization.level'].match(/.*\((.*)\)/)[1];
-        var debug = root[name + '.compiler.optimization.DebugLevel'].match(/.*\((.*)\)/)[1];
+        var optimize = '';
+        if (root[name + '.compiler.optimization.level'])
+            optimize = root[name + '.compiler.optimization.level'].match(/.*\((.*)\)/)[1];
+        var debug = '';
+        if (root[name + '.compiler.optimization.DebugLevel'])
+            debug = root[name + '.compiler.optimization.DebugLevel'].match(/.*\((.*)\)/)[1];
         var others = root[name + '.compiler.miscellaneous.OtherFlags'];
 
         var inc = '';
