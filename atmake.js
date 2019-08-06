@@ -143,9 +143,9 @@ function extractProjConfig(proj, cb)
         if (item.SubType != 'compile') return;
         var file = fixPath(item['@_Include']);
         if (file.split('.').slice(-1)[0] == 'c')
-            cSources.push(path.join(argv['prj-dir'], file));
+            cSources.push(argv['prj-dir'] + '/' + file);
         else if (file.split('.').slice(-1)[0] == 'cpp')
-            cxxSources.push(path.join(argv['prj-dir'], file));
+            cxxSources.push(argv['prj-dir'] + '/' + file);
     });
 
     return {
